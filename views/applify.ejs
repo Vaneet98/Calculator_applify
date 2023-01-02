@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Applify</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="img/favicon.ico" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://www.dafontfree.net/embed/bWV0cm9wb2xpcy1yZWd1bGFyJmRhdGEvNTIvbS8xNTY4MDAvTWV0cm9wb2xpcy1SZWd1bGFyLm90Zg"
+    rel="stylesheet" type="text/css" />
+  <!-- Vendor CSS Files -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Template Main CSS File -->
+  <link href="/public/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="calculator-main text-center">
+    <nav role="navigation" class="navbar pt10 navbar-custom navbar-fixed-top" id="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/site">
+            <img class="rs-logo rs-hide" itemprop="image" src="/public/images/logo.png">
+            <!-- <img class="mobilelogo-show rs-show" itemprop="image" src="/themes/adminre/../../design/calculator/img/vp-logo.png" alt="VenturePact Logo" width="39" height="26" data-pin-nopin="true"> -->
+          </a>
+          <ul class="nav navbar-nav navbar-right mt10 pull-right">
+            <li>
+              <label class="head-prize">
+                <small>Rough Estimate</small>
+                <br>
+                <input type="" id="total"
+                  style="margin-top: -10px; width: 60px; height:20px ;text-align: center; background-color: #F06824; border: none;color: white;">hours
+                <!-- </input> -->
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="main_calculator">
+      <div class="container">
+        <div class="row main_row">
+          <div class="col-md-12">
+            <form id="msform" novalidate>
+              <!-- First page   -->
+
+              <div id="hoursData" arr="<%=JSON.stringify(getHours)%>"></div>
+
+
+              <fieldset>
+                <div class="next main_div_row_one cost_steps">
+
+                  <div class="row row_bx">
+                    <div class="row ">
+                      <div class="col-md-12">
+                        <h2>Scratch or Readymade Apps?</h2>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 A" id="1">
+                      <div class="exist_business_bx clr_black A" id="1">
+                        <h3 class="A" id="1"> Readymade (save upto 40% of the cost) </h3>
+                        <p class="A" id="1"> Uber, Intagram, Airbnb, Whatsapp etc. </p>
+                        <img src="/public/images/mobile.png" name="img" alt="" id="1" class="A">
+
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 A" id="2">
+                      <div class="exist_business_bx clr_orange A" id="2">
+                        <h3 class="A" ,id="2"> Custom App </h3>
+                        <p class="A" ,id="2"> Cars & Transport, Social networking, Travel, <br> Health & Beauty etc.
+                        </p>
+                        <img src="/public/images/cate2.png" name="img" alt="" id="2" class="A">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </fieldset>
+
+              <!-- Image call dynamic -->
+              <fieldset>
+                <div class="row previous">
+                  <div class="col-md-12">
+                    <div class=" title_text">
+                      <a href="#_" class="">
+                        <i class="fa fa-angle-left"></i> Back </a>
+                      <h2>Industry or Category</h2>
+                    </div>
+                  </div>
+                </div>
+
+                <% for(var i=0; i < readymadeData.length; i++){ %>
+
+                  <div class="next col-lg-3 col-md-4 readymadeData readyMade"
+                    data_name="<%=readymadeData[i].categoryName%>" data_id="<%=readymadeData[i].id%>"
+                    style="border:1px solid black ; margin-left: 5px; border-radius: 20px; ">
+                    <span class="app_logo">
+
+                      <%=readymadeData[i].categoryName%>
+
+                    </span>
+                  </div>
+
+                  <% } %>
+
+                    <% for(var j=0; j < customData.length; j++){ %>
+
+                      <div class="next col-lg-3 col-md-4 customData custom" data_name="<%=customData[j].categoryName%>"
+                        data_id="<%=customData[j].id%>"
+                        style="border:1px solid black ; margin-left: 5px; border-radius: 20px;">
+                        <span class="app_logo">
+                          <%=customData[j].categoryName%>
+                        </span>
+                      </div>
+
+                      <% } %>
+                        <div class="col-lg-3 col-md-4">
+                          <span class="app_logo add_new btn_stroke button" data-modal="modalOne" id="">+ Add new
+                            category</span>
+                        </div>
+
+
+                        <!-- The Modal -->
+                        <div id="modalOne" class="modal">
+                          <div class="modal-content">
+                            <div class="contact-form">
+                              <a class="close">&times;</a>
+
+                              <h3 style=" display:flex;
+                                align-items:center;
+                                justify-content:center;">Add new application</h3>
+                              <div>
+                                <input type="text" class="form-control" id="categorys" name="category"
+                                  placeholder="Required category">
+                                <input type="text" class="form-control" id="names" name="name"
+                                  placeholder="Your name *">
+                                <input type="text" class="form-control" id="emails" name="email"
+                                  placeholder="Email address for notifications *">
+
+                              </div>
+
+                              <button type="submit" class="addCategory">Submit</button>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+              </fieldset>
+
+              <fieldset>
+                <div class="previous title_text">
+
+                  <a href="#_" class="">
+                    <i class="fa fa-angle-left"></i> Back
+                  </a>
+                  <h2>Platform</h2>
+                </div>
+
+                <div class="row">
+
+                  <% for(var k=0; k < platformData.length; k++){ %>
+                    <div class="col-lg-4">
+                      <div _ngcontent-my-app-c9="" class="option mat-ripple ng-star-inserted platformClass"
+                        data_platform_id="<%=platformData[k].id%> " data_platform_name="<%=platformData[k].name%>"
+                        mat-ripple="">
+                        <span _ngcontent-my-app-c9="" class="text">
+                          <%=platformData[k].name%> <br>App
+                        </span>
+
+                        <div class="radio">
+                          <label>
+                            <input type="radio" class="webClass" name="optionsRadios" id="web" required>
+
+                            <span class="indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <% } %>
+
+                </div>
+                <input type="button" id="btn1" name="next" class="next Login Typen" value="Save and Continue"
+                  style="background-color: #F06824;" disabled />
+
+
+
+              </fieldset>
+
+
+
+              <fieldset>
+                <div class="previous title_text">
+                  <a href="#_" class="">
+                    <i class="fa fa-angle-left"></i> Back </a>
+                  <h2>Login Type</h2>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div _ngcontent-my-app-c9="" class="option mat-ripple ng-star-inserted logins" data="emailLogin"
+                      mat-ripple="">
+                      <span _ngcontent-my-app-c9="" class="text">Email Login</span>
+
+                      <div class="radio">
+                        <label>
+
+                          <input type="radio" value="3342" class="sum secondPage" name="login" id="emaillogins">
+                          <span class="indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div _ngcontent-my-app-c9="" class="option mat-ripple ng-star-inserted  logins" data="socialLogin"
+                      mat-ripple="">
+                      <span _ngcontent-my-app-c9="" class="text">Via Social Networks</span>
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="login" id="via social Networks" value="123" class="sum secondPage">
+                          <span class="indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div _ngcontent-my-app-c9="" class="option mat-ripple ng-star-inserted  logins" data="twoStepAuth"
+                      mat-ripple="">
+                      <span _ngcontent-my-app-c9="" class="text">2 Step Authentications</span>
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="login" value="654" class="sum secondPage "
+                            id="2 step Authentications">
+                          <span class="indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div _ngcontent-my-app-c9="" class="option mat-ripple ng-star-inserted  logins" data="noSignUp"
+                      mat-ripple="">
+                      <span _ngcontent-my-app-c9="" class="text">No Signup Required</span>
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="login" id="No Signup Required" class="sum secondPage" value="765">
+
+                          <span class="indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <input type="button" id="btn2" name="next" class="next btn_main" value="Save and Continue" disabled />
+
+
+              </fieldset>
+
+
+              <fieldset>
+                <div class="previous title_text">
+                  <a href="#_" class="">
+                    <i class="fa fa-angle-left"></i> Back </a>
+                  <h2 class="fs-title">Profile Creation</h2>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div _ngcontent-my-app-c9="" class="option mat-ripple ng-star-inserted profile"
+                      data="accountRequired" mat-ripple="">
+                      <span _ngcontent-my-app-c9="" class="text">Users & Accounts Required</span>
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="user" id="user & Accounts Required" class="sum thirdPage" value="">
+                          <span class="indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div _ngcontent-my-app-c9="" class="option mat-ripple ng-star-inserted profile"
+                      data="noAccountRequired" mat-ripple="">
+                      <span _ngcontent-my-app-c9="" class="text">Not Required</span>
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="user" id="Not Required" class="sum thirdPage" value="">
+
+                          <span class="indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <input type="button" id="btn3" name="next" class="next btn_main" value="Save and Continue" disabled />
+
+
+              </fieldset>
+
+
+
+
+
+
+
+              <fieldset>
+                <div class="previous title_text">
+                  <a href="#_" class="">
+                    <i class="fa fa-angle-left"></i> Back </a>
+                  <h2>Feature Types</h2>
+                </div>
+                <h3 class="fs-subtitle">Please choose required features below:</h3>
+                <div class="main_list_bx">
+                  <ul class="check_ul">
+                    <h4>Enough for MVP</h4>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="User Feed" class="sum fifthPage mvp" data="userFeed" value=""
+                          name="userFeed">
+                        <label for="User Feed">User Feed <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="Search" class="sum fifthPage mvp" data="search" value=""
+                          name="search">
+                        <label for="Search">Search <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" class="sum fifthPage mvp" data="messageAndManagement"
+                          id="Messaging and User Engagement" value="" name="messageAndManagement">
+                        <label for="Messaging and User Engagement">Messaging and User Engagement <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="Payment and eCommerce" class="sum fifthPage mvp" data="payEcommerce"
+                          value="" name="payEcommerce">
+                        <label for="Payment and eCommerce">Payment and eCommerce <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" class="sum fifthPage mvp" data="userGenerated" value=""
+                          name="userGenerated" id="User-Generated Content">
+                        <label for="User-Generated Content">User-Generated Content <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="booking" class="sum fifthPage mvp" data="booking" value=""
+                          name="booking">
+                        <label for="booking">Booking <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="check_ul">
+                    <h4>Additional features</h4>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="Push Notifications" class="sum fifthPage additionalFeatures"
+                          data="pushNotifications" value="" name="pushNotifications">
+                        <label for="Push Notifications">Push Notifications <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="Rating & Reviews" class="sum fifthPage additionalFeatures"
+                          data="ratingReview" value="" name="ratingReview">
+                        <label for="Rating & Reviews">Rating & Reviews <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="Rewards and Deals" class="sum fifthPage additionalFeatures"
+                          data="rewardDeal" value="" name="rewardDeal">
+                        <label for="Rewards and Deals">Rewards & Deals <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="checkbox" id="Category and Filters" class="sum fifthPage additionalFeatures"
+                          data="categoryFilter" value="" name="categoryFilter">
+                        <label for="Category and Filters">Category & Filters <span>
+
+                          </span></label>
+                      </div>
+                    </li>
+                  </ul>
+
+                </div>
+
+                <input type="button" id="btn4" class="next btn_main" value="Save and Continue" disabled />
+              </fieldset>
+
+
+
+
+
+
+              <fieldset>
+                <div class="previous title_text">
+                  <a href="#_" class="">
+                    <i class="fa fa-angle-left"></i> Back </a>
+                  <h2 class="fs-title">Submit project</h2>
+                  <h3 class="fs-subtitle">Fill in your credentials to authorize submission</h3>
+
+                </div>
+                <input type="text" name="name" placeholder="Enter your name" class="laststep" id="name" />
+                <input type="text" name="email" placeholder="Enter your email" class="laststep" id="email" />
+                <input type="button" class=" btn_main saveAndSend" value="Save & Send">
+              </fieldset>
+
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- For radio button and checkbox not work when we not selected any value -->
+    <script>
+      // This is for multiselect values
+
+      $('#btn4').prop("disabled", true);
+      $('input:checkbox').click(function () {
+        if ($(this).is(':checked')) {
+          $('#btn4').prop("disabled", false);
+        } else {
+          if ($('.fifthPage').filter(':checked').length < 1) {
+            $('#btn4').attr('disabled', true);
+          }
+        }
+      });
+
+      // This is for login type radio button
+      var inputElems = document.getElementsByName("login");
+      for (var i = inputElems.length - 1; i >= 0; --i) {
+        var elem = inputElems[i];
+        elem.onchange = function () {
+          document.getElementById("btn2").removeAttribute("disabled");
+        };
+      }
+      //  This is for user account required or not radio button
+
+      var inputElems = document.getElementsByName("user");
+      for (var i = inputElems.length - 1; i >= 0; --i) {
+        var elem = inputElems[i];
+        elem.onchange = function () {
+          document.getElementById("btn3").removeAttribute("disabled");
+        };
+      }
+
+      // This is for web mobile and both radio button
+      var inputElems = document.getElementsByName("optionsRadios");
+      for (var i = inputElems.length - 1; i >= 0; --i) {
+        var elem = inputElems[i];
+        elem.onchange = function () {
+          document.getElementById("btn1").removeAttribute("disabled");
+        };
+      }
+
+
+
+    </script>
+
+    <!-- This is for pop up -->
+    <script>
+      let modalBtns = [...document.querySelectorAll(".button")];
+      modalBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.getAttribute("data-modal");
+          document.getElementById(modal).style.display = "block";
+        };
+      });
+      let closeBtns = [...document.querySelectorAll(".close")];
+      closeBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.closest(".modal");
+          modal.style.display = "none";
+        };
+      });
+      window.onclick = function (event) {
+        if (event.target.className === "modal") {
+          event.target.style.display = "none";
+        }
+      };
+    </script>
+
+    <!-- This is for add cost, send id to router, user selected data in array and after submit send to database  -->
+    <script>
+      // Function for add the cost
+      //To store the user selected data in object and array inside object and after submit send to database
+      var arr = {}
+      $(document).ready(function () {
+
+        var hoursArray = document.getElementById("hoursData").getAttribute('arr');
+        hoursArray = JSON.parse(hoursArray);
+
+        var finalRequest = {};
+        var account, platformName, additionalFeatures_selection, mvp_selection, totalHours, categoryId, logins, platformId, webHours, mobHours, bothHours = 0;
+
+        var profileHours = 0;
+        var additionalFeaturesHours = 0;
+        var mvpHours = 0;
+        var index = 0;
+        var loginHours = 0;
+        $("#total").val(0);
+
+        $(".readyMade").click(function () {
+          categoryId = $(this).attr("data_id");
+          finalRequest.category = $(this).attr("data_name");
+          $('input[name=login]').prop('checked', false);
+          $('input[name=user]').prop('checked', false);
+          $('input[name=optionsRadios]').prop('checked', false);
+          $(':checkbox').each(function () {
+            this.checked = false;
+          });
+          $("#btn1,#btn2,#btn3,#btn4").prop("disabled", true);
+
+          $("#total").val(0);
+          loginHours = 0;
+          profileHours = 0;
+          mvpHours = 0;
+          additionalFeaturesHours = 0;
+
+        });
+
+        $(".custom").click(function () {
+          categoryId = $(this).attr("data_id");
+          finalRequest.category = $(this).attr("data_name");
+          $('input[name=login]').prop('checked', false);
+          $('input[name=user]').prop('checked', false);
+          $('input[name=optionsRadios]').prop('checked', false);
+          $(':checkbox').each(function () {
+            this.checked = false;
+          });
+          $("#btn1,#btn2,#btn3,#btn4").prop("disabled", true);
+          $("#total").val(0);
+          loginHours = 0;
+          profileHours = 0;
+          mvpHours = 0;
+          additionalFeaturesHours = 0;
+        });
+
+        $(".platformClass").click(function () {
+          $('input[name=login]').prop('checked', false);
+          $('input[name=user]').prop('checked', false);
+          $(':checkbox').each(function () {
+            this.checked = false;
+          });
+          $("#total").val(0);
+          loginHours = 0;
+          profileHours = 0;
+          mvpHours = 0;
+          additionalFeaturesHours = 0;
+          platformId = $(this).attr("data_platform_id");
+          platformName = $(this).attr("data_platform_name");
+          finalRequest.platformName = platformName;
+        });
+
+        $(".logins").click(function () {
+          hoursArray = document.getElementById("hoursData").getAttribute('arr');
+          hoursArray = JSON.parse(hoursArray);
+          logins = $(this).attr("data");
+          let id = "";
+          if (finalRequest.platformName == "Web") {
+            id = "0e0bb306-a7aa-4df9-9740-f03b53cb4e03";
+          }
+          else if (finalRequest.platformName == "Mobile") {
+            id = "0e0bb306-a7aa-4df9-9740-f03b53cb4e04";
+          }
+          else {
+            id = "0e0bb306-a7aa-4df9-9740-f03b53cb4e05";
+          }
+          console.log("id---", id);
+          hoursArray = hoursArray.filter(el => el.categoryId == categoryId);
+          index = hoursArray.findIndex(p => p.platformId == id);
+          if (logins == "emailLogin") {
+            loginHours = hoursArray[index].emailLogin;
+            finalRequest.loginType = "Email";
+          }
+          if (logins == "twoStepAuth") {
+            loginHours = hoursArray[index].twoStepAuth;
+            finalRequest.loginType = "Two Step Auth";
+          }
+          if (logins == "socialLogin") {
+            loginHours = hoursArray[index].socialLogin;
+            finalRequest.loginType = "Social Login";
+          }
+          if (logins == "noSignUp") {
+            loginHours = hoursArray[index].noSignUp;
+            finalRequest.loginType = "No Signup Required";
+          }
+          var finalHours = parseInt(loginHours) + parseInt(profileHours) + parseInt(mvpHours);
+          $("#total").val(finalHours);
+          finalRequest.totalHours = finalHours;
+        });
+
+
+
+
+        $(".profile").click(function () {
+          account = $(this).attr("data");
+
+          if (account == "accountRequired") {
+            profileHours = hoursArray[index].accountRequired;
+            finalRequest.profile = "Acccount Required";
+          }
+          if (account == "noAccountRequired") {
+            profileHours = hoursArray[index].noAccountRequired;
+            finalRequest.profile = "No Acccount Required";
+          }
+          var finalHours = parseInt(loginHours) + parseInt(profileHours) + parseInt(mvpHours);
+          $("#total").val(finalHours);
+          finalRequest.totalHours = finalHours;
+        });
+
+        $(".mvp").click(function () {
+          var array = $('.mvp:checked').toArray().map(x => x.name);
+          finalRequest.mvp = array.toString();
+          var ms = 0;
+          for (let af of array) {
+            if (af == "search") {
+              ms += hoursArray[index].search;
+            }
+            if (af == "booking") {
+              ms += hoursArray[index].booking;
+            }
+            if (af == "userGenerated") {
+              ms += hoursArray[index].userGenerated;
+            }
+            if (af == "payEcommerce") {
+              mvpHours += hoursArray[index].payEcommerce;
+            }
+            if (af == "messageAndManagement") {
+              ms += hoursArray[index].messageAndManagement;
+            }
+            if (af == "userFeed") {
+              ms += hoursArray[index].userFeed;
+            }
+          }
+          mvpHours = ms;
+          var finalHours = parseInt(loginHours) + parseInt(profileHours) + parseInt(mvpHours) + parseInt(additionalFeaturesHours);
+          $("#total").val(finalHours);
+          finalRequest.totalHours = finalHours;
+          console.log("This is fiinal check", finalRequest)
+        });
+
+
+
+        $(".additionalFeatures").change(function () {
+          var array = $('.additionalFeatures:checked').toArray().map(x => x.name);
+          finalRequest.additionalFeatures = array.toString();
+          var hs = 0;
+          for (let af of array) {
+            if (af == "pushNotifications") {
+              hs += hoursArray[index].pushNotifications;
+            }
+            if (af == "rewardDeal") {
+              hs += hoursArray[index].rewardDeal;
+            }
+            if (af == "categoryFilter") {
+              hs += hoursArray[index].categoryFilter;
+            }
+            if (af == "ratingReview") {
+              hs += hoursArray[index].ratingReview;
+            }
+
+          }
+          additionalFeaturesHours = hs;
+
+          var finalHours = parseInt(loginHours) + parseInt(profileHours) + parseInt(mvpHours) + parseInt(additionalFeaturesHours);
+          // console.log("finalHours---", finalHours)    
+          $("#total").val(finalHours);
+          finalRequest.totalHours = finalHours;
+        });
+
+        $(".A ").click(function () {
+          arr.AppType = event.target.id;
+          if (event.target.id == 1) {
+            finalRequest.applicationType = "Readymade App";
+            $(".readyMade").show();
+            $(".custom").hide();
+          }
+          if (event.target.id == 2) {
+
+            finalRequest.applicationType = "Custom App";
+            $(".readyMade").hide();
+            $(".custom").show();
+          }
+
+        })
+
+        $(".saveAndSend").click(function () {
+          finalRequest.userName = $("#name").val();
+          finalRequest.email = $("#email").val();
+
+          let isValid = ValidateEmail(finalRequest.email);
+          let isValidName = ValidateName(finalRequest.userName)
+          if (isValid == true && isValidName == true) {
+            $.ajax({
+              method: "POST",
+              url: "/saveData",
+              data: finalRequest,
+            })
+              .done(function (msg) {
+
+                alert("Data has been saved successfully!!")
+                location.reload();
+
+              });
+          }
+        })
+
+        $(".addCategory").click(function () {
+          var name = $("#userName").val();
+          var email = $("#userEmail").val();
+          var category = $("#userCategory").val();
+          let isValid = ValidateEmail(email);
+          let isValidName = ValidateName(name);
+          if (isValid == true && isValidName == true) {
+
+            $.ajax({
+              method: "POST",
+              url: "/addNewCategoryByUser",
+              data: { name, email, category, platform: finalRequest.applicationType },
+            })
+              .done(function (msg) {
+                alert("Data send successfully.We can connect with you with in 2 days.Thanks for using this application")
+                location.reload();
+              });
+          }
+        })
+
+
+      });
+
+
+      function ValidateEmail(email) {
+
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (email.match(validRegex)) {
+
+          //   alert("Valid email address!");
+          return true;
+
+        } else {
+
+          alert("Invalid email address!");
+          return false;
+        }
+
+      }
+
+
+
+      function ValidateName(name) {
+
+        var validLength = 3;
+
+        if (name.length > 3) {
+
+          //   alert("Valid email address!");
+          return true;
+
+        } else {
+
+          alert("User name should be more than three characters!");
+          return false;
+        }
+
+      }
+
+
+      //jQuery time
+      var current_fs, next_fs, previous_fs; //fieldsets
+      var left, opacity, scale; //fieldset properties which we will animate
+      var animating; //flag to prevent quick multi-click glitches
+      $(".next").click(function () {
+        if (animating) return false;
+        animating = true;
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({
+          opacity: 0
+        }, {
+          step: function (now, mx) {
+            //as the opacity of current_fs reduces to 0 - stored in "now"
+            //1. scale current_fs down to 80%
+            scale = 1 - (1 - now) * 0.2;
+            //2. bring next_fs from the right(50%)
+            left = (now * 50) + "%";
+            //3. increase opacity of next_fs to 1 as it moves in
+            opacity = 1 - now;
+            current_fs.css({
+              'transform': 'scale(' + scale + ')',
+              'position': 'absolute'
+            });
+            next_fs.css({
+              'left': left,
+              'opacity': opacity
+            });
+          },
+          duration: 800,
+          complete: function () {
+            current_fs.hide();
+            animating = false;
+          },
+          //this comes from the custom easing plugin
+          easing: 'easeInOutBack'
+        });
+      });
+      $(".previous").click(function () {
+        if (animating) return false;
+        animating = true;
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+        //de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+        //show the previous fieldset
+        previous_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({
+          opacity: 0
+        }, {
+          step: function (now, mx) {
+            //as the opacity of current_fs reduces to 0 - stored in "now"
+            //1. scale previous_fs from 80% to 100%
+            scale = 0.8 + (1 - now) * 0.2;
+            //2. take current_fs to the right(50%) - from 0%
+            left = ((1 - now) * 50) + "%";
+            //3. increase opacity of previous_fs to 1 as it moves in
+            opacity = 1 - now;
+            current_fs.css({
+              'left': left
+            });
+            previous_fs.css({
+              'transform': 'scale(' + scale + ')',
+              'opacity': opacity
+            });
+          },
+          duration: 800,
+          complete: function () {
+            current_fs.hide();
+            animating = false;
+          },
+          //this comes from the custom easing plugin
+          easing: 'easeInOutBack'
+        });
+      });
+
+
+
+    </script>
+</body>
+
+</html>
